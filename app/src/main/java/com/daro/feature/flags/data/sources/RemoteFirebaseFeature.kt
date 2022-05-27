@@ -1,4 +1,4 @@
-package com.daro.feature.flags.data
+package com.daro.feature.flags.data.sources
 
 import com.daro.feature.flags.domain.FeatureFlags
 import com.google.firebase.firestore.ktx.firestore
@@ -6,7 +6,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class RemoteFeature @Inject constructor() : FeatureFlags {
+class RemoteFirebaseFeature @Inject constructor() : FeatureFlags {
 
     private val db = Firebase.firestore
 

@@ -1,4 +1,4 @@
-package com.daro.feature.flags.data
+package com.daro.feature.flags.data.sources
 
 import android.content.Context
 import com.daro.feature.flags.domain.FeatureFlags
@@ -10,7 +10,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 
-class LocalFeature @Inject constructor(
+class LocalJsonFeature @Inject constructor(
     @ApplicationContext private val context: Context
 ) : FeatureFlags {
 
@@ -35,14 +35,11 @@ class LocalFeature @Inject constructor(
         return adapter.fromJson(json) as Map<String, Any>
     }
 
-    private fun getJsonDataFromAsset(): String? {
-        val jsonString: String
-        try {
-            jsonString = context.assets.open("config.json").bufferedReader().use { it.readText() }
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            return null
-        }
-        return jsonString
+    private fun getJsonDataFromAsset() = try {
+        context.assets.open("config.json").bufferedReader().use { it.readText() }
+    } catch (ioException: IOException) {
+        ioException.printStackTrace()
+        null
     }
+
 }

@@ -1,12 +1,10 @@
 package com.daro.feature.flags.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.daro.feature.flags.data.Feature
 import com.daro.feature.flags.data.FeatureManager
-import com.daro.feature.flags.data.Source
+import com.daro.feature.flags.data.enties.Feature
+import com.daro.feature.flags.data.enties.Source
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,16 +20,11 @@ class MainViewModel @Inject constructor(
     val result = _result.asStateFlow()
 
     init {
-        updateStatus(false)
+        updateStatus(Source.ConfigJson)
     }
 
-    fun updateStatus(checked: Boolean) {
+    fun updateStatus(featureSource: Source) {
         viewModelScope.launch {
-            val featureSource = when (checked) {
-                true -> Source.Remote
-                else -> Source.Local
-            }
-
             val feature1Status = Feature(key = "feature_name1", source = featureSource)
             val feature2Status = Feature(key = "feature_name2", source = featureSource)
 
