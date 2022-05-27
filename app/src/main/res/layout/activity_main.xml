@@ -36,6 +36,12 @@
             android:layout_height="wrap_content"
             android:text="@string/prefs_source" />
 
+        <RadioButton
+            android:id="@+id/retrofit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retrofit_source" />
+
     </RadioGroup>
 
     <com.google.android.material.textview.MaterialTextView

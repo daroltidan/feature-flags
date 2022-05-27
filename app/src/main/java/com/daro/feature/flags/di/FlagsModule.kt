@@ -2,6 +2,7 @@ package com.daro.feature.flags.di
 
 import com.daro.feature.flags.data.sources.LocalJsonFeature
 import com.daro.feature.flags.data.sources.RemoteFirebaseFeature
+import com.daro.feature.flags.data.sources.RetrofitFeature
 import com.daro.feature.flags.data.sources.SharedPreferencesFeature
 import com.daro.feature.flags.domain.FeatureFlags
 import dagger.Binds
@@ -22,6 +23,10 @@ annotation class FirebaseFlag
 @Retention(AnnotationRetention.BINARY)
 annotation class SharedPrefsFlag
 
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class RetrofitFlag
+
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class FlagsModule {
@@ -37,4 +42,8 @@ abstract class FlagsModule {
     @SharedPrefsFlag
     @Binds
     abstract fun sharedPrefs(sharedPrefsFlag: SharedPreferencesFeature): FeatureFlags
+
+    @RetrofitFlag
+    @Binds
+    abstract fun retrofitFlag(retoriftFeature: RetrofitFeature): FeatureFlags
 }

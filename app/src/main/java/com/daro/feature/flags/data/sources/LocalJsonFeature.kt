@@ -4,19 +4,15 @@ import android.content.Context
 import com.daro.feature.flags.domain.FeatureFlags
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.IOException
 import javax.inject.Inject
 
 
 class LocalJsonFeature @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val moshi: Moshi
 ) : FeatureFlags {
-
-    private val moshi: Moshi = Moshi.Builder()
-        .addLast(KotlinJsonAdapterFactory())
-        .build()
 
     override suspend fun isEnabled(feature: String): Boolean {
         val json = getJsonDataFromAsset() ?: return false

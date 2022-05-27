@@ -3,4 +3,5 @@
     <string name="firebase_source">firebase Source</string>
     <string name="JSON_source">json Source</string>
     <string name="prefs_source">prefs Source</string>
+    <string name="retrofit_source">retrofit_source</string>
 </resources>

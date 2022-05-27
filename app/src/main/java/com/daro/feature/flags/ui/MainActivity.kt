@@ -53,7 +53,9 @@ class MainActivity : AppCompatActivity() {
             val featureSource = when (i) {
                 R.id.firebase -> Source.Firebase
                 R.id.json -> Source.ConfigJson
-                else -> Source.SharedPrefs
+                R.id.prefs -> Source.SharedPrefs
+                R.id.retrofit -> Source.Retrofit
+                else -> throw IllegalStateException("not implemented")
             }
             viewModel.updateStatus(featureSource)
         }
