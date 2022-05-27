@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.daro.feature.flags.data.FeatureManager
 import com.daro.feature.flags.data.enties.Feature
 import com.daro.feature.flags.data.enties.Source
+import com.daro.feature.flags.ui.App.Constants.FEATURE_1
+import com.daro.feature.flags.ui.App.Constants.FEATURE_2
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,8 +27,8 @@ class MainViewModel @Inject constructor(
 
     fun updateStatus(featureSource: Source) {
         viewModelScope.launch {
-            val feature1Status = Feature(key = "feature_name1", source = featureSource)
-            val feature2Status = Feature(key = "feature_name2", source = featureSource)
+            val feature1Status = Feature(key = FEATURE_1, source = featureSource)
+            val feature2Status = Feature(key = FEATURE_2, source = featureSource)
 
             val r = StringBuilder()
             r.appendLine("feature 1 is ${featureManager.isFeatureEnabled(feature1Status)}")

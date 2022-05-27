@@ -8,6 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import com.daro.feature.flags.R
 import com.daro.feature.flags.data.enties.Source
 import com.daro.feature.flags.databinding.ActivityMainBinding
+import com.daro.feature.flags.ui.App.Constants.FEATURE_1
+import com.daro.feature.flags.ui.App.Constants.FEATURE_2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -34,8 +36,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupDefaultSharedValues() {
         sharedPreferences.edit()
             .apply {
-                putBoolean("feature_name1", false)
-                putBoolean("feature_name2", false)
+                putBoolean(FEATURE_1, false)
+                putBoolean(FEATURE_2, false)
             }
             .apply()
     }
